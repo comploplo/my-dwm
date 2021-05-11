@@ -7,8 +7,9 @@ static const unsigned int gappx     = 10;       /* default gap between windows i
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=10" };
-static const char dmenufont[]       = "monospace:size=10";
+// static const char *fonts[]          = { "monospace:size=10" };
+static const char *fonts[]          = { "FontAwesome:size=12","Iosevka:size=11","Material Design Icons:size=12", "Noto Sans Devanagari:size=11"};
+static const char dmenufont[]       = "Iosevka:size=11";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -31,7 +32,7 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor    float x,y,w,h         floatborderpx     scratch key*/
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1,        50,50,500,500,        2,                0 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1,        50,50,500,500,        2,                0 },
+	// { "Firefox",  NULL,       NULL,       1 << 8,       0,           -1,        50,50,500,500,        2,                0 },
 	{ NULL,       NULL,   "scratchpad",   0,            1,           -1,        50,50,500,500,        2,                's' },
 	{ NULL,       NULL, "big-scratchpad", 0,            1,           -1,        100,150,1000,750,     3,                'b' },
 };
@@ -63,6 +64,8 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "kitty", NULL };
+static const char *scrotcmd[]  = { "scrt", NULL };
+static const char *scrotselcmd[]  = { "scrt-select", NULL };
 
 /*First arg only serves to match against key in rules*/
 static const char *scratchpadcmd[] = {"s", "kitty", "--title", "scratchpad", NULL}; 
@@ -72,6 +75,8 @@ static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
+	{ 0,                            XK_Print,  spawn,          {.v = scrotcmd } },
+	{ ShiftMask,                    XK_Print,  spawn,          {.v = scrotselcmd } },
 	{ MODKEY,                       XK_z,      togglescratch,  {.v = scratchpadcmd } },
 	{ MODKEY|ShiftMask,             XK_z,      togglescratch,  {.v = bigscratchpadcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
