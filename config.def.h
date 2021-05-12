@@ -6,7 +6,7 @@ static const int startwithgaps	     = 0;	 /* 1 means gaps are used by default */
 static const unsigned int gappx     = 10;       /* default gap between windows in pixels */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
-static const int topbar             = 1;        /* 0 means bottom bar */
+static const int topbar             = 0;        /* 0 means bottom bar */
 // static const char *fonts[]          = { "monospace:size=10" };
 static const char *fonts[]          = { "FontAwesome:size=12","Iosevka:size=11","Material Design Icons:size=12", "Noto Sans Devanagari:size=11"};
 static const char dmenufont[]       = "Iosevka:size=11";
@@ -23,7 +23,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "", "", "", "", "", "", "", "", "" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -32,9 +32,10 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor    float x,y,w,h         floatborderpx     scratch key*/
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1,        50,50,500,500,        2,                0 },
+	{ "Signal",   NULL,       NULL,       1 << 4,            0,           -1,        50,50,500,500,        -1,               0 },
 	// { "Firefox",  NULL,       NULL,       1 << 8,       0,           -1,        50,50,500,500,        2,                0 },
-	{ NULL,       NULL,   "scratchpad",   0,            1,           -1,        50,50,500,500,        2,                's' },
-	{ NULL,       NULL, "big-scratchpad", 0,            1,           -1,        100,150,1000,750,     3,                'b' },
+	{ NULL,       NULL,   "scratchpad",   0,            1,           -1,        50,50,500,500,        -1,               's' },
+	{ NULL,       NULL, "big-scratchpad", 0,            1,           -1,        100,150,1000,750,     -1,               'b' },
 };
 
 /* layout(s) */
